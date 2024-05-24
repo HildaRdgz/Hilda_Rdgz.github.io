@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Preguntas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test de Biología</h1>
+    <div id="test"></div>
+    <button onclick="submitTest()">Enviar</button>
+    <div id="result" class="result"></div>
+    
+    <script>
+	
+        const questions = [
+            {
+                question: "1. Estructura que da soporte y protege a las células vegetales se le conoce como:",
+                options: ["Aparato de Golgi", "Retículo endoplásmico", "Membrana plasmática", "Pared celular"],
+                answer: "Pared celular"
+            },
+            {
+                question: "2. Las sustancias orgánicas elementales que solo son usadas en cantidades diminutas por el cuerpo son llamadas:",
+                options: ["Proteínas", "Minerales", "Vitaminas", "Elementos Trazas"],
+                answer: "Elementos Trazas"
+            },
+            {
+                question: "3. Cuando dos estructuras similares han evolucionado independientemente a partir de estructuras ancestrales distintas y por procesos de desarrollo muy diferentes a ésta teoría; se le conoce como:",
+                options: ["Teoría Lamarckiana", "Radiación adaptativa", "Evolución convergente", "Selección natural"],
+                answer: "Evolución convergente"
+            },
+            {
+                question: "4. Cloroplastos que no han sido expuestos a la luz y carecen de clorofila; generalmente se observan cuando las plantas se cultivan en la oscuridad:",
+                options: ["Etioplasto", "Estroma", "Plastidoma", "Tilacoide"],
+                answer: "Etioplasto"
+            },
+            {
+                question: "5. ¿Frente a qué patología se puede utilizar el taxol, el cual es un compuesto que se aisló a partir de una sustancia encontrada en el tejo; su acción bloquea la formación de los microtúbulos, por lo que impide la formación del huso acromático?",
+                options: ["Parkinson", "Esclerosis múltiple", "Cáncer", "Sida"],
+                answer: "Cáncer"
+            },
+            {
+                question: "6. ¿A qué teoría corresponde el siguiente postulado?: “a partir de la combinación de compuestos químicos la vida surgió en la tierra primitiva, originando las biomoléculas que posteriormente formaron a los primeros sistemas precelulares”.",
+                options: ["Exobiológica", "Creacionista", "Biogénesis", "Abiogénesis"],
+                answer: "Abiogénesis"
+            },
+            {
+                question: "7. ¿Qué aminoácido es clave en las reacciones de trasnominación, por las que las plantas pueden incorporar el nitrógeno a su ciclo biológico?",
+                options: ["Lisina", "Asparragina", "Valina", "Glutamina"],
+                answer: "Glutamina"
+            },
+            {
+                question: "8. ¿Qué función realiza el tejido conectivo en los animales?",
+                options: ["Transmitir información sensitiva.", "Mantener unidos a los demás tejidos.", "Proteger las superficies externas del cuerpo.", "Elaborar productos de secreción."],
+                answer: "Mantener unidos a los demás tejidos."
+            },
+            {
+                question: "9. Ordena los siguientes elementos de las nefronas de vertebrados, desde que se forma la orina hasta donde es eliminada:",
+                options: ["Túbulo distal, Conducto colector, Cápsula de Bowman, Túbulo proximal.", "Túbulo proximal, Túbulo distal, Conducto colector, Cápsula de Bowman.", "Cápsula de Bowman, Túbulo proximal, Túbulo distal, Conducto colector.", "Cápsula de Bowman, Túbulo distal, Túbulo proximal, Conducto colector."],
+                answer: "Cápsula de Bowman, Túbulo proximal, Túbulo distal, Conducto colector."
+            },
+            {
+                question: "10. Los grupos sanguíneos ABO son un ejemplo de:",
+                options: ["Herencia ligada al sexo", "Dominancia incompleta", "Herencia mendeliana", "Alelo múltiples"],
+                answer: "Alelo múltiples"
+            },
+            {
+                question: "11. La falta de ésta vitamina puede ser la causante de un padecimiento muy común en la actualidad llamada depresión:",
+                options: ["Vitamina A", "Vitamina B", "Vitamina C", "Vitamina D"],
+                answer: "Vitamina B"
+            },
+            {
+                question: "12. Función principal de los leucocitos o glóbulos blancos:",
+                options: ["Regenerar la médula ósea", "Facilitar el transporte de oxígeno en la sangre", "Ayudan a combatir enfermedades", "Aporta nutrientes adiposos a la médula"],
+                answer: "Ayudan a combatir enfermedades"
+            },
+            {
+                question: "13. Durante la fotosíntesis, los estomas en las hojas permanecen abiertos el tiempo suficiente para captar dióxido de carbono, lo que a su vez genera una pérdida de agua por transpiración. Los espacios que deja el agua transpirada tienen que ocuparse nuevamente por moléculas de agua nuevas, que ascienden a las hojas desde las raíces a través del xilema. Según esta información, se puede afirmar que los estomas son importantes en el proceso de nutrición de las plantas, debido a que:",
+                options: ["Cuando están abiertos permiten que el agua suba con iones para las células.", "Son células especializadas en la absorción de sales minerales.", "Permiten el flujo de savia elaborada a través del xilema.", "Por ellos ingresan sales que se distribuyen a toda la planta a través del xilema."],
+                answer: "Cuando están abiertos permiten que el agua suba con iones para las células."
+            },
+            {
+                question: "14. Cualquier relación en la que los organismos procuran sus alimentos dentro de un ecosistema se llama:",
+                options: ["Eslabón alimenticio", "Trama alimenticia", "Ciclo alimenticio", "Cadena alimenticia"],
+                answer: "Cadena alimenticia"
+            },
+            {
+                question: "15. En las bacterias la pared celular está compuesta por:",
+                options: ["Celulosa y pectina", "Proteolípidos", "Péptidoglucanos", "Quitina y pectina."],
+                answer: "Péptidoglucanos"
+            },
+            {
+                question: "16. Una función especializada del sistema circulatorio en el humano es:",
+                options: ["El transporte de oxígeno, dióxido de carbono, agua, glucosa, grasas y carbohidratos.", "La regulación del ritmo cardiaco y respiratorio.", "El transporte de toxinas, CO2, H2O.", "El almacenamiento de sustancias y su transformación."],
+                answer: "El transporte de oxígeno, dióxido de carbono, agua, glucosa, grasas y carbohidratos."
+            },
+            {
+                question: "17. Indica el orden secuencial correcto de las etapas de la mitosis:",
+                options: ["anafase – interfase – profase – telofase", "anafase – interfase – telofase – profase", "interfase – profase – metafase – anafase", "profase – anafase - metafase – telofase"],
+                answer: "interfase – profase – metafase – anafase"
+            },
+            {
+                question: "18. ¿Que se produce en el proceso de entrecruzamiento cromosómico?",
+                options: ["La unión de las dos cromátidas.", "Los gametos masculinos o femeninos.", "El intercambio de ADN entre dos cromosomas homólogos.", "La condensación de los cromosomas."],
+                answer: "El intercambio de ADN entre dos cromosomas homólogos."
+            },
+            {
+                question: "19. El órgano vegetal económicamente importante del maíz, manzanilla y papa es:",
+                options: ["Fruto, semilla, tallo", "Fruto, flor y tubérculo", "Hojas, semilla, raíz", "Tallo, hojas y semilla"],
+                answer: "Fruto, flor y tubérculo"
+            },
+            {
+                question: "20. Se define el ciclo de Calvin como:",
+                options: ["Es una etapa de la respiración aerobia de la glucosa.", "Está relacionado con la producción de O2 durante la fotosíntesis.", "Es el proceso de fijación y reducción del CO2 atmosférico.", "Interviene en los procesos catabólicos."],
+                answer: "Es el proceso de fijación y reducción del CO2 atmosférico."
+            },
+            {
+                question: "21. ¿Cuál es la función principal del axón en una neurona?",
+                options: ["Eliminar células muertas.", "Proporcionar nutrientes al núcleo.", "Proteger como una funda a la propia neurona.", "Transmitir los impulsos nerviosos."],
+                answer: "Transmitir los impulsos nerviosos."
+            },
+            {
+                question: "22. ¿Cuál de las siguientes características es propia del tejido cartilaginoso?",
+                options: ["No tiene fibras de colágeno.", "Es el principal tejido de los huesos.", "Carece de vasos sanguíneos y nervios.", "Está formado por células muertas."],
+                answer: "Carece de vasos sanguíneos y nervios."
+            },
+            {
+                question: "23. Un insecto como el ¨Insecto palo” que trata de parecerse a otro organismo, como una rama seca para obtener su alimento; ilustraría un ejemplo de:",
+                options: ["Mutualismo", "Comensalismo", "Mimetismo", "Coloración disimulada."],
+                answer: "Mimetismo"
+            },
+            {
+                question: "24. Hormona de la digestión secretada en el duodeno, que inhibe el peristaltismo y la secreción ácida gástrica:",
+                options: ["Colecistocinina", "Secretina", "Gastrina", "Enterogastrona"],
+                answer: "Secretina"
+            },
+            {
+                question: "25. La Teoría de Lamarck enuncia lo siguiente:",
+                options: ["Los cambios que presentan los organismos son producto de la selección natural.", "La adaptación adquirida por los organismos se transmite a su descendencia.", "Los cambios que presentan los organismos provienen de su información genética.", "Las mutaciones que sufren los organismos son producto del azar."],
+                answer: "La adaptación adquirida por los organismos se transmite a su descendencia."
+            },
+            {
+                question: "26. Las especies diploides generalmente exhiben más variabilidad genética que las especies haploides porque:",
+                options: ["La recombinación genética no ocurre en especies haploides.", "Las especies haploides se reproducen asexualmente.", "Los alelos recesivos están protegidos por la diploidía.", "Las tasas de mutación son superiores en especies diploides."],
+                answer: "Los alelos recesivos están protegidos por la diploidía."
+            },
+            {
+                question: "27. La unidad estructural básica repetitiva de la cromatina de los cromosomas eucariótico es:",
+                options: ["Proteosoma", "Nucleosoma", "Genoma", "Centrosoma"],
+                answer: "Nucleosoma"
+            },
+            {
+                question: "28. Durante el curso de la evolución humana el tamaño del cerebro ha aumentado. Esto es un ejemplo de selección:",
+                options: ["Diversificante", "Estabilizante", "Balanceadora", "Direccional"],
+                answer: "Direccional"
+            },
+            {
+                question: "29. El efecto invernadero es causado por:",
+                options: ["Reacciones en la estratósfera entre estos gases de invernadero y el ozono, produciendo calor de longitud de onda larga.", "Luz de longitud de onda corta que es re-irradiada como de onda larga y es atrapada por ciertos gases.", "El calor que es almacenado como radiación de onda corta por las superficies ásperas de la Tierra y luego re irradiada como luz de onda larga.", "Masas de aire frío que se mezclan con gases calientes y producen gases atmosféricos cálidos."],
+                answer: "Luz de longitud de onda corta que es re-irradiada como de onda larga y es atrapada por ciertos gases."
+            },
+            {
+                question: "30. El ictiosaurio fue un gran reptil acuático, sus fósiles muestran que tenía una aleta dorsal y una cola semejante a la de los peces, aunque sus parientes más cercanos fueron reptiles terrestres que no tenían ni aletas, ni colas acuáticas. Comparadas a las aletas y colas de peces, las aletas dorsales y colas de los ictiosaurios son estructuras:",
+                options: ["Derivadas", "Taxonómicas", "Homólogas", "Análogas"],
+                answer: "Análogas"
+            },
+            {
+                question: "31. Los agentes infecciosos formados por pequeñas moléculas de proteína reciben el nombre de:",
+                options: ["Bacterias", "Priones", "Levaduras", "Virus"],
+                answer: "Priones"
+            },
+            {
+                question: "32. Esta figura representa la etapa de un proceso metabólico. Señale la respuesta verdadera correspondiente al nombre del sustrato, producto y complejo enzimático implicado.",
+                options: ["Sustrato: ácido pirúvico, producto: ácido láctico; complejo enzimático: lactato deshidrogenasa", "Sustrato: ácido pirúvico, producto: acetaldehído; complejo enzimático: piruvato descarboxilasa", "Sustrato: ácido pirúvico; producto: acetil-CoA; complejo enzimático: succinato deshidrogenasa.", "Sustrato: ácido succínico; producto: ácido fumárico; complejo enzimático: succinato deshidrogenasa."],
+                answer: "Sustrato: ácido pirúvico, producto: ácido láctico; complejo enzimático: lactato deshidrogenasa"
+            },
+            {
+                question: "33. Los seres humanos pueden realizar la respiración de forma aeróbica y anaeróbica. ¿Cuáles son productos tanto de la respiración celular aeróbica como de la respiración celular anaeróbica en el ser humano?",
+                options: ["Piruvato y ATP", "Piruvato y lactato", "ATP y dióxido de carbono", "Lactato y dióxido de carbono"],
+                answer: "Piruvato y ATP"
+            },
+            {
+                question: "34. Un ejemplo de comportamiento estereotipado en los animales se presenta cuando:",
+                options: ["Los perros ladran.", "Los osos huyen de la presencia de extraños.", "Los pájaros construyen sus nidos.", "Los halcones cazan aves."],
+                answer: "Los pájaros construyen sus nidos."
+            },
+            {
+                question: "35. La talasemia es una enfermedad hereditaria de la sangre del hombre que produce anemia. La anemia severa es encontrada en MM y un tipo benigno de los genotipos MN. Los individuos normales tienen un genotipo NN . Si todos los MM mueren antes de la madurez sexual, ¿Qué proporción de adultos en la F1, entre matrimonios talasémicos leves con normales, puede encontrarse normal?",
+                options: ["25%", "50%", "75%", "100%"],
+                answer: "50%"
+            },
+            {
+                question: "36. El primer compuesto biotecnológico obtenido por tecnología de DNA recombinante fue:",
+                options: ["Prostaglandina", "Eritropoyetina", "Insulina", "Gamma Interferón"],
+                answer: "Insulina"
+            },
+            {
+                question: "37. ¿Qué animales tienen tres tipos de respiración, corazón con tres cavidades y circulación doble e incompleta?",
+                options: ["Anfibios", "Reptiles", "Aves", "Peces"],
+                answer: "Anfibios"
+            },
+            {
+                question: "38. La proteína que actúa como reserva de aminoácidos y participa en el transporte de molécula es:",
+                options: ["Hemoglobina", "Globulina", "Queratina", "Albúmina"],
+                answer: "Albúmina"
+            },
+            {
+                question: "39. Una presa de agua impactada por la actividad del hombre, presenta cobertura del 80% de la superficie del agua del lirio acuático. El veinte restante presenta coloración verde parduzca, igualmente se observó que los usuarios presentan dermatitis. Jerarquiza las actividades a realizar para evaluar en un primer momento al sistema:",
+                options: ["1. Identificar especies indicadoras de impacto al sistema 2. Evaluar la calidad física y química del sistema 3. Analizar factores urbanos y culturales del sitio 4. Determinar los sitios de entrada de contaminantes.", "1.2.3.4", "2.1.4.3", "4.3.2.1", "3.4.2.1"],
+                answer: "3.4.2.1"
+            },
+            {
+                question: "40. Los grandes biomas terrestres se definen por un tipo de vegetación uniforme dependiente de los factores climáticos que condiciona al resto de seres vivos que allí habitan. Uno de estos biomas es la taiga, que se caracteriza por:",
+                options: ["Situarse cerca del polo norte, por lo que la temperatura es baja, sus suelos se descongelan solo en verano (permafrost), la vegetación es escasa y está representada por musgos, líquenes, hierbas y pequeños arbustos.", "Situarse en altas latitudes y altitudes, con inviernos fríos y veranos suaves, donde abundan pinos, abetos y abedules.", "Localizarse en zonas templadas del hemisferio norte, con inviernos fríos y veranos cálidos; presenta suelos muy desarrollados y abundan los árboles de hoja caduca, como las hayas y los robles.", "Ser un ecosistema herbáceo poco arbolado, con precipitaciones escasas y una fauna predominante de grandes rebaños de herbívoros, como bisontes, caballos o ñus."],
+                answer: "Situarse en altas latitudes y altitudes, con inviernos fríos y veranos suaves, donde abundan pinos, abetos y abedules."
+            },
+			
+        ];
+
+       function renderTest() {
+            startTime = performance.now();
+            const testDiv = document.getElementById('test');
+            questions.forEach((q, index) => {
+                const options = q.options.map((option, i) => `<input type="radio" name="question${index}" value="${option}">${option}<br>`);
+                testDiv.innerHTML += `
+                    <div class="question">
+                        <p>${q.question}</p>
+                        ${options.join('')}
+                    </div>
+                `;
+            });
+        }
+
+        function submitTest() {
+			const endTime = performance.now(); // Guarda el tiempo al enviar el test
+            const timeTaken = endTime - startTime;
+            const minutes = Math.floor(timeTaken / 60000);
+            const seconds = ((timeTaken % 60000) / 1000).toFixed(2);
+            const formattedTime = `${minutes} minutos y ${seconds} segundos`;
+            const selectedAnswers = [];
+            questions.forEach((q, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                if (selectedOption) {
+                    selectedAnswers.push(selectedOption.value);
+                } else {
+                    selectedAnswers.push(null);
+                }
+            });
+            displayResult(selectedAnswers, formattedTime);
+        }
+
+        function displayResult(selectedAnswers, timeTaken) {
+            const resultDiv = document.getElementById('result');
+			resultDiv.innerHTML = `<h2>Resultados (Tiempo tomado: ${timeTaken}):</h2>`;
+            questions.forEach((q, index) => {
+                resultDiv.innerHTML += `<p>Pregunta ${index + 1}: ${selectedAnswers[index] === q.answer ? 'Correcta' : 'Incorrecta'}</p>`;
+            });
+        }
+		
+
+        renderTest();
+    </script>
+</body>
+</html>
